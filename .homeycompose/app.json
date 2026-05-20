@@ -1,0 +1,30 @@
+{
+  "id": "nl.tammert.fairlandmodbus",
+  "version": "1.0.0",
+  "compatibility": ">=13.0.0",
+  "sdk": 3,
+  "runtime": "python",
+  "pythonVersion": "3.14",
+  "platforms": [
+    "local"
+  ],
+  "name": {
+    "en": "Fairland Modbus"
+  },
+  "description": {
+    "en": "Control Fairland devices with a connected TCP Modbus device"
+  },
+  "category": [
+    "tools"
+  ],
+  "permissions": [],
+  "images": {
+    "small": "/assets/images/small.png",
+    "large": "/assets/images/large.png",
+    "xlarge": "/assets/images/xlarge.png"
+  },
+  "author": {
+    "name": "Sebastiaan Tammer",
+    "email": "sebastiaan@tammer.nl"
+  }
+}

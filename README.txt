@@ -1,1 +1,1 @@
-Control Fairland devices with a connected TCP Modbus device
+Control Fairland devices with a connected TCP Modbus device.

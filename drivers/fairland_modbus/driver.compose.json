@@ -1,0 +1,83 @@
+{
+  "name": {
+    "en": "fairland_modbus"
+  },
+  "class": "heatpump",
+  "capabilities": [
+    "measure_current",
+    "heater_operation_mode",
+    "target_temperature",
+    "measure_temperature",
+    "thermostat_mode",
+    "onoff",
+    "measure_voltage"
+  ],
+  "platforms": [
+    "local"
+  ],
+  "connectivity": [
+    "lan"
+  ],
+  "pair": [
+    {
+      "id": "manual_ip"
+    }
+  ],
+  "images": {
+    "small": "{{driverAssetsPath}}/images/small.png",
+    "large": "{{driverAssetsPath}}/images/large.png",
+    "xlarge": "{{driverAssetsPath}}/images/xlarge.png"
+  },
+  "capabilitiesOptions": {
+    "thermostat_mode": {
+      "title": {
+        "en": "Heat pump mode"
+      },
+      "values": [
+        {
+          "id": "auto",
+          "title": {
+            "en": "Auto"
+          }
+        },
+        {
+          "id": "heat",
+          "title": {
+            "en": "Heat"
+          }
+        },
+        {
+          "id": "cool",
+          "title": {
+            "en": "Cool"
+          }
+        }
+      ]
+    },
+    "heater_operation_mode": {
+      "title": {
+        "en": "Mode"
+      },
+      "values": [
+        {
+          "id": "smart",
+          "title": {
+            "en": "Smart (0-100%)"
+          }
+        },
+        {
+          "id": "silent",
+          "title": {
+            "en": "Silent (0-80%)"
+          }
+        },
+        {
+          "id": "super_silent",
+          "title": {
+            "en": "Super Silent (0-24%)"
+          }
+        }
+      ]
+    }
+  }
+}

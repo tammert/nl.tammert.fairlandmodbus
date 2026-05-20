@@ -1,0 +1,17 @@
+[
+  {
+    "id": "ip_address",
+    "type": "text",
+    "label": {"en": "IP Address"}
+  },
+  {
+    "id": "port",
+    "type": "number",
+    "label": {"en": "Port"}
+  },
+  {
+    "id": "unit_id",
+    "type": "number",
+    "label": {"en": "Unit ID"}
+  }
+]

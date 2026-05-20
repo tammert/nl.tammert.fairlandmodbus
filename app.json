@@ -16,7 +16,7 @@
     "en": "Control Fairland devices with a connected TCP Modbus device"
   },
   "category": [
-    "tools"
+    "climate"
   ],
   "permissions": [],
   "images": {
@@ -27,5 +27,123 @@
   "author": {
     "name": "Sebastiaan Tammer",
     "email": "sebastiaan@tammer.nl"
-  }
+  },
+  "brandColor": "#59945A",
+  "homepage": "https://github.com/tammert/nl.tammert.fairlandmodbus/blob/main/README.md",
+  "source": "https://github.com/tammert/nl.tammert.fairlandmodbus",
+  "bugs": {
+    "url": "https://github.com/tammert/nl.tammert.fairlandmodbus/issues"
+  },
+  "pythonPackages": [
+    "pymodbus"
+  ],
+  "drivers": [
+    {
+      "name": {
+        "en": "fairland_modbus"
+      },
+      "class": "heatpump",
+      "capabilities": [
+        "measure_current",
+        "heater_operation_mode",
+        "target_temperature",
+        "measure_temperature",
+        "thermostat_mode",
+        "onoff",
+        "measure_voltage"
+      ],
+      "platforms": [
+        "local"
+      ],
+      "connectivity": [
+        "lan"
+      ],
+      "pair": [
+        {
+          "id": "manual_ip"
+        }
+      ],
+      "images": {
+        "small": "/drivers/fairland_modbus/assets/images/small.png",
+        "large": "/drivers/fairland_modbus/assets/images/large.png",
+        "xlarge": "/drivers/fairland_modbus/assets/images/xlarge.png"
+      },
+      "capabilitiesOptions": {
+        "thermostat_mode": {
+          "title": {
+            "en": "Heat pump mode"
+          },
+          "values": [
+            {
+              "id": "auto",
+              "title": {
+                "en": "Auto"
+              }
+            },
+            {
+              "id": "heat",
+              "title": {
+                "en": "Heat"
+              }
+            },
+            {
+              "id": "cool",
+              "title": {
+                "en": "Cool"
+              }
+            }
+          ]
+        },
+        "heater_operation_mode": {
+          "title": {
+            "en": "Mode"
+          },
+          "values": [
+            {
+              "id": "smart",
+              "title": {
+                "en": "Smart (0-100%)"
+              }
+            },
+            {
+              "id": "silent",
+              "title": {
+                "en": "Silent (0-80%)"
+              }
+            },
+            {
+              "id": "super_silent",
+              "title": {
+                "en": "Super Silent (0-24%)"
+              }
+            }
+          ]
+        }
+      },
+      "id": "fairland_modbus",
+      "settings": [
+        {
+          "id": "ip_address",
+          "type": "text",
+          "label": {
+            "en": "IP Address"
+          }
+        },
+        {
+          "id": "port",
+          "type": "number",
+          "label": {
+            "en": "Port"
+          }
+        },
+        {
+          "id": "unit_id",
+          "type": "number",
+          "label": {
+            "en": "Unit ID"
+          }
+        }
+      ]
+    }
+  ]
 }

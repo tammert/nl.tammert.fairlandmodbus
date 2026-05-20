@@ -1,0 +1,66 @@
+<!doctype html>
+<html>
+<head>
+    <link rel="stylesheet" href="../../../assets/homey-css/index.css"/>
+</head>
+<body>
+<!-- IP Address Field -->
+<div class="homey-form-group">
+    <label class="homey-label" for="ip-address">IP Address</label>
+    <input class="homey-input" id="ip-address" type="text" placeholder="192.168.1.50"/>
+</div>
+
+<!-- Port Field -->
+<div class="homey-form-group">
+    <label class="homey-label" for="port">Network Port</label>
+    <input class="homey-input" id="port" type="number" value="502" placeholder="502"/>
+</div>
+
+<!-- Unit ID Field -->
+<div class="homey-form-group">
+    <label class="homey-label" for="unit-id">Unit ID (Slave ID)</label>
+    <input class="homey-input" id="unit-id" type="number" value="1" placeholder="1"/>
+</div>
+
+<button class="homey-button-primary" id="connect-btn">Connect Device</button>
+
+<script>
+    const ipInput = document.getElementById('ip-address');
+    const portInput = document.getElementById('port');
+    const unitIdInput = document.getElementById('unit-id');
+    const connectBtn = document.getElementById('connect-btn');
+
+    connectBtn.addEventListener('click', () => {
+        const ipValue = ipInput.value.trim();
+        const portValue = parseInt(portInput.value, 10);
+        const unitIdValue = parseInt(unitIdInput.value, 10);
+
+        // Basic frontend validation
+        if (!ipValue) return Homey.alert('Please enter an IP address');
+        if (isNaN(portValue) || portValue < 1 || portValue > 65353) return Homey.alert('Invalid port number');
+        if (isNaN(unitIdValue) || unitIdValue < 0 || unitIdValue > 255) return Homey.alert('Unit ID must be between 0 and 255');
+
+        // Send the complex object payload to the Python driver
+        const payload = {
+            ip: ipValue,
+            port: portValue,
+            unit_id: unitIdValue
+        };
+
+        Homey.emit('validate_ip_details', payload, (err, device) => {
+            if (err) {
+                return Homey.alert(err.message || err);
+            }
+
+            Homey.createDevice(device, (err) => {
+                if (err) {
+                    return Homey.alert(err.message || err);
+                }
+
+                Homey.done();
+            });
+        })
+    });
+</script>
+</body>
+</html>

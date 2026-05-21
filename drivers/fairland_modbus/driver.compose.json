@@ -76,6 +76,12 @@
           "title": {
             "en": "Super Silent (0-24%)"
           }
+        },
+        {
+          "id": "turbo",
+          "title": {
+            "en": "Turbo (120%)"
+          }
         }
       ]
     }

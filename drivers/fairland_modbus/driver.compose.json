@@ -4,13 +4,15 @@
   },
   "class": "heatpump",
   "capabilities": [
-    "measure_current",
+    "onoff",
+    "thermostat_mode",
     "heater_operation_mode",
     "target_temperature",
     "measure_temperature",
-    "thermostat_mode",
-    "onoff",
-    "measure_voltage"
+    "measure_temperature.water_outlet",
+    "measure_temperature.ambient",
+    "measure_voltage",
+    "measure_current"
   ],
   "platforms": [
     "local"

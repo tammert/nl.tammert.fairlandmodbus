@@ -13,5 +13,10 @@
     "id": "unit_id",
     "type": "number",
     "label": {"en": "Unit ID"}
+  },
+  {
+    "id": "poll_interval",
+    "type": "number",
+    "label": {"en": "Poll Interval (seconds)"}
   }
 ]

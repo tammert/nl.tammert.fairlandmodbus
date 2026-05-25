@@ -48,9 +48,11 @@
         "thermostat_mode",
         "heater_operation_mode",
         "target_temperature",
+        "power_level",
         "measure_temperature",
         "measure_temperature.water_outlet",
         "measure_temperature.ambient",
+        "measure_frequency",
         "measure_voltage",
         "measure_current"
       ],
@@ -149,6 +151,25 @@
           "title": {
             "en": "Outside temperature"
           }
+        },
+        "measure_frequency": {
+          "title": {
+            "en": "Compressor frequency"
+          }
+        },
+        "power_level": {
+          "setable": false,
+          "title": {
+            "en": "Compressor %"
+          },
+          "uiComponent": "sensor",
+          "units": {
+            "en": "%"
+          },
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "decimals": 0
         }
       },
       "id": "fairland_modbus",

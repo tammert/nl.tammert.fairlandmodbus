@@ -92,13 +92,13 @@ class FairlandModbusDevice(Device):
         self.log(f"setting heat pump power to {value}")
         self.log(self.modbus_client.write_coil(0, value, device_id=self.unit_id))
 
-    # set the heating mode (0=auto, 1=heat, 2=cool)
+    # set the heating mode (see THERMOSTAT_MODE_TO_MODBUS for mappings)
     async def on_capability_thermostat_mode(self, value: str, **kwargs: Any) -> None:
         self.log(f"setting heat pump mode to {value}")
         internal_value = THERMOSTAT_MODE_TO_MODBUS.get(value)
         self.log(self.modbus_client.write_register(0, internal_value, device_id=self.unit_id))
 
-    # set the mode (0=smart, 1=silent, 2=super_silent, 3=turbo)
+    # set the mode (see HEATER_OPERATION_MODE_TO_MODBUS for mappings)
     async def on_capability_heater_operation_mode(self, value: str, **kwargs: Any) -> None:
         self.log(f"setting heater operation mode to {value}")
         internal_value = HEATER_OPERATION_MODE_TO_MODBUS.get(value)
@@ -163,6 +163,11 @@ class FairlandModbusDevice(Device):
         self.log(f"current: {current}")
         voltage = self.modbus_client.read_input_registers(11, device_id=self.unit_id).registers[0]
         self.log(f"voltage: {voltage}")
+        compressor_percentage = self.modbus_client.read_input_registers(0, device_id=self.unit_id).registers[0]
+        self.log(f"compressor percentage: {compressor_percentage}")
+        compressor_frequency = self.modbus_client.read_input_registers(1, device_id=self.unit_id).registers[0]
+        self.log(f"compressor frequency: {compressor_frequency}")
+
         water_inlet_temperature = convert_temperature_to_celsius(
             self.modbus_client.read_input_registers(3, device_id=self.unit_id).registers[0])
         self.log(f"water inlet temperature: {water_inlet_temperature}")
@@ -178,7 +183,9 @@ class FairlandModbusDevice(Device):
         await self.set_capability_value("heater_operation_mode", heater_operation_mode)
         await self.set_capability_value("measure_current", current)
         await self.set_capability_value("measure_voltage", voltage)
+        await self.set_capability_value("measure_frequency", compressor_frequency)
         await self.set_capability_value("target_temperature", set_temperature)
+        await self.set_capability_value("power_level", compressor_percentage)
         await self.set_capability_value("measure_temperature", water_inlet_temperature)
         await self.set_capability_value("measure_temperature.water_outlet", water_outlet_temperature)
         await self.set_capability_value("measure_temperature.ambient", ambient_temperature)

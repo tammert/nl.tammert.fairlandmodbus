@@ -126,6 +126,29 @@
               }
             }
           ]
+        },
+        "target_temperature": {
+          "title": {
+            "en": "Target temperature"
+          },
+          "min": 18,
+          "max": 40,
+          "step": 0.5
+        },
+        "measure_temperature": {
+          "title": {
+            "en": "Water inlet temperature"
+          }
+        },
+        "measure_temperature.water_outlet": {
+          "title": {
+            "en": "Water outlet temperature"
+          }
+        },
+        "measure_temperature.ambient": {
+          "title": {
+            "en": "Outside temperature"
+          }
         }
       },
       "id": "fairland_modbus",
@@ -142,21 +165,24 @@
           "type": "number",
           "label": {
             "en": "Port"
-          }
+          },
+          "value": 502
         },
         {
           "id": "unit_id",
           "type": "number",
           "label": {
             "en": "Unit ID"
-          }
+          },
+          "value": 1
         },
         {
           "id": "poll_interval",
           "type": "number",
           "label": {
             "en": "Poll Interval (seconds)"
-          }
+          },
+          "value": 60
         }
       ]
     }

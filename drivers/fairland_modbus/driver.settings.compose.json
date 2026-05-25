@@ -7,16 +7,19 @@
   {
     "id": "port",
     "type": "number",
-    "label": {"en": "Port"}
+    "label": {"en": "Port"},
+    "value": 502
   },
   {
     "id": "unit_id",
     "type": "number",
-    "label": {"en": "Unit ID"}
+    "label": {"en": "Unit ID"},
+    "value": 1
   },
   {
     "id": "poll_interval",
     "type": "number",
-    "label": {"en": "Poll Interval (seconds)"}
+    "label": {"en": "Poll Interval (seconds)"},
+    "value": 60
   }
 ]

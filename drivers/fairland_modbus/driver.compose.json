@@ -86,6 +86,29 @@
           }
         }
       ]
+    },
+    "target_temperature": {
+      "title": {
+        "en": "Target temperature"
+      },
+      "min": 18,
+      "max": 40,
+      "step": 0.5
+    },
+    "measure_temperature": {
+      "title": {
+        "en": "Water inlet temperature"
+      }
+    },
+    "measure_temperature.water_outlet": {
+      "title": {
+        "en": "Water outlet temperature"
+      }
+    },
+    "measure_temperature.ambient": {
+      "title": {
+        "en": "Outside temperature"
+      }
     }
   }
 }

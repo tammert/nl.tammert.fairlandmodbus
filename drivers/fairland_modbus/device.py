@@ -77,6 +77,16 @@ class FairlandModbusDevice(Device):
         if hasattr(self, "modbus_client"):
             self.modbus_client.close()
 
+    def reconnect_modbus_client(self) -> None:
+        if hasattr(self, "modbus_client"):
+            self.modbus_client.close()
+
+        self.modbus_client = ModbusTcpClient(self.ip_address, port=self.port)
+
+        if not self.modbus_client.connect():
+            raise ConnectionError("unable to reconnect to Modbus device")
+
+
     # turn the pool heat pump on/off (true=on, false=off)
     async def on_capability_onoff(self, value: bool, **kwargs: Any) -> None:
         self.log(f"setting heat pump power to {value}")
@@ -115,6 +125,7 @@ class FairlandModbusDevice(Device):
     async def poll_measurements(self) -> None:
         while True:
             try:
+                self.reconnect_modbus_client()
                 await self.update_measurements()
                 await self.set_available()
             except asyncio.CancelledError:
@@ -123,7 +134,7 @@ class FairlandModbusDevice(Device):
                 self.error(f"failed to poll Modbus measurements: {err}")
                 await self.set_unavailable("unable to read Modbus measurements")
 
-            await asyncio.sleep(300) #TODO: fix poll_interval
+            await asyncio.sleep(self.get_settings().get("poll_interval", 60))
 
     async def update_measurements(self) -> None:
         onoff = self.modbus_client.read_coils(0, device_id=self.unit_id).bits[0]

@@ -163,6 +163,7 @@
             "en": "Compressor %"
           },
           "uiComponent": "sensor",
+          "insights": true,
           "units": {
             "en": "%"
           },
